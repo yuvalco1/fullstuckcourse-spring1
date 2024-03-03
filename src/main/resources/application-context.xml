@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here  by deafult they are singleton, if needed define scope="prototype" -->
+    <bean id="service" class="org.example.MyService"/>
+    <bean id="car" class="org.example.Car">
+        <constructor-arg ref="gasegine" />
+    </bean>
+    <bean id="engine" class="org.example.Engine"/>
+    <bean id="gasegine" class="org.example.GasEngine"/>
+
+
+    <!-- create Restaurant and simple Menu and Menu Items in application context -->
+
+    <bean id="burger" class="org.example.MenuItem">
+        <property name="name" value="Burger"/>
+        <property name="description" value="Juicy beef patty on a sesame seed bun"/>
+        <property name="price" value="8.99"/>
+    </bean>
+
+    <bean id="pizza" class="org.example.MenuItem">
+        <property name="name" value="Pizza"/>
+        <property name="description" value="Thin crust pizza with assorted toppings"/>
+        <property name="price" value="10.99"/>
+    </bean>
+
+    <bean id="pmenu" class="org.example.SimpleMenu">
+        <property name="menuItems">
+            <list>
+                <ref bean="burger"/>
+                <ref bean="pizza"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="myrestaurant" class="org.example.Restaurant">
+            <constructor-arg ref="pmenu"/>
+    </bean>
+
+
+
+
+
+</beans>
